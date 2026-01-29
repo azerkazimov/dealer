@@ -2,6 +2,7 @@ import CarsCard from "@/components/ui/cars-card";
 import { layoutTheme } from "@/constant/theme";
 import { carModels } from "@/data/car-models";
 import { useTheme } from "@/hooks/use-theme";
+import { useBrandStore } from "@/store/brand.store";
 import { CarModel } from "@/types/car-types";
 import { ThemeType } from "@/types/theme-types";
 import { useState } from "react";
@@ -10,6 +11,7 @@ import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native
 export default function CarsCatalog() {
     const { colorScheme } = useTheme();
     const styles = getStyles(colorScheme);
+    const { brands } = useBrandStore();
 
     const shuffleCars = (array: CarModel[])=>{
         const shuffled = [...array].sort(()=> Math.random() - 0.5);
@@ -26,6 +28,15 @@ export default function CarsCatalog() {
         setRefreshing(false)
     }
 
+    // Get filtered cars based on selected brand
+    const getDisplayCars = () => {
+        if (brands.length > 0) {
+            // Filter all car models by the selected brand
+            return carModels.filter(car => car.brandSlug === brands[0]);
+        }
+        // Show shuffled cars when no brand is selected
+        return cars;
+    };
 
     return (
         <View style={styles.container}>
@@ -37,7 +48,7 @@ export default function CarsCatalog() {
             </View>
 
             <FlatList
-                data={cars}
+                data={getDisplayCars()}
                 renderItem={({ item }) => <CarsCard carModel={item} />}
                 horizontal
                 showsHorizontalScrollIndicator={false}
@@ -51,11 +62,14 @@ export default function CarsCatalog() {
 
 const getStyles = (theme: ThemeType) => StyleSheet.create({
     container: {
+        marginBottom: 24,
     },
     header: {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
+        paddingHorizontal: 16,
+        marginBottom: 12,
     },
     headerTitle: {
         fontSize: 22,
@@ -68,6 +82,7 @@ const getStyles = (theme: ThemeType) => StyleSheet.create({
         color: layoutTheme.colors.accent,
     },
     modelsContainer: {
-        gap: 12,
+        gap: 16,
+        paddingHorizontal: 16,
     },
 })
