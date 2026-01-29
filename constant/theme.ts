@@ -15,13 +15,7 @@ export const layoutTheme = {
             black: "#000000",
         },
 
-        accent: {
-            100: "#E3F0F3",
-            300: "#B7D3DD",
-            500: "#95BCCC", // MAIN ACCENT
-            700: "#6E9BA8",
-            900: "#4D7682",
-        },
+        accent: "#FF6F23",
 
         background: {
             primary: "#FFFFFF",
@@ -34,11 +28,11 @@ export const layoutTheme = {
             gray: "#a6a5a2",
             darkBlue: "#1B2332",
         },
-      
+
 
         text: {
             primary: "#000000",
-            secondary: "#4F4F4F",
+            secondary: "#FFFFFF",
             muted: "#838383",
             tertiary: "#F6F6F6",
             inverse: "#FFFFFF",
@@ -48,12 +42,12 @@ export const layoutTheme = {
 
         button: {
             primary: {
-                bg: "#F9864A",     
+                bg: "#F9864A",
                 bgHover: "#E06F36",
                 text: "#FFFFFF",
             },
             accent: {
-                bg: "#F9A46A",     
+                bg: "#F9A46A",
                 bgHover: "#E58C4F",
                 text: "#FFFFFF",
             },
@@ -62,7 +56,15 @@ export const layoutTheme = {
 
     fonts: {
         inner: {
-           
+            "thin": "Inter-Thin",
+            "extraLight": "Inter-ExtraLight",
+            "light": "Inter-Light",
+            "regular": "Inter-Regular",
+            "medium": "Inter-Medium",
+            "semiBold": "Inter-SemiBold",
+            "bold": "Inter-Bold",
+            "extraBold": "Inter-ExtraBold",
+            "black": "Inter-Black",
         }
     },
 };
